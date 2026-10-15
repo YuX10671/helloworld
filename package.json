@@ -1,0 +1,11 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "我的第一个AI开发的网站",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "宇希",
+  "license": "MIT"
+}
