@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hello World - 宇希</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                   "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: #fff;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 16px;
+      padding: 48px 64px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    .time-label {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-bottom: 8px;
+    }
+    .time-value {
+      font-size: 28px;
+      font-family: "SF Mono", Consolas, Menlo, monospace;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Hello World！我是【宇希】，我的第一个AI开发的网站</h1>
+    <div class="time-label">当前服务器时间</div>
+    <div class="time-value" id="server-time">加载中…</div>
+  </div>
+
+  <script>
+    async function refreshTime() {
+      try {
+        const resp = await fetch('/api/time');
+        const data = await resp.json();
+        document.getElementById('server-time').textContent = data.local;
+      } catch (e) {
+        document.getElementById('server-time').textContent = '时间获取失败';
+      }
+    }
+    refreshTime();
+    setInterval(refreshTime, 1000); // 每秒刷新一次
+  </script>
+</body>
+</html>
